@@ -4,78 +4,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portafolio de proyectos tecnológicos">
-    <title>Mi Portafolio | Desarrollo y Tecnología</title>
+
+    <meta name="description"
+        content="Portafolio tecnológico de Jeybing Lewis Manzanares. Desarrollo de software, IT y Cloud.">
+
+    <title>Jeybing Lewis Manzanares | DevPortfolio</title>
+
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
 </head>
 
 <body>
+
+    <!-- BARRA DE NAVEGACIÓN -->
     <header class="navbar">
-        <a class="logo" href="#inicio">DevPortfolio<span>.</span></a>
+
+        <a class="logo" href="#inicio">
+            JLM<span>.</span>
+        </a>
+
         <nav aria-label="Navegación principal">
-            <a href="#inicio">Inicio</a>
-            <a href="#habilidades">Habilidades</a>
-            <a href="#proyectos">Proyectos</a>
-            <a href="#contacto">Contacto</a>
+
+            <a href="#inicio" data-i18n="navHome">
+                Inicio
+            </a>
+
+            <a href="#habilidades" data-i18n="navSkills">
+                Habilidades
+            </a>
+
+            <a href="#proyectos" data-i18n="navProjects">
+                Proyectos
+            </a>
+
+            <a href="#contacto" data-i18n="navContact">
+                Contacto
+            </a>
+
         </nav>
+
+        <!-- SELECTOR DE IDIOMA -->
+        <div class="language-switch">
+
+            <button id="btn-es" class="lang-btn active" type="button" aria-pressed="true">
+                ES
+            </button>
+
+            <button id="btn-en" class="lang-btn" type="button" aria-pressed="false">
+                EN
+            </button>
+
+        </div>
+
     </header>
 
     <main>
+
+        <!-- PRESENTACIÓN PERSONAL -->
         <section class="hero" id="inicio">
-            <p class="eyebrow">DESARROLLO · IT · CLOUD</p>
-            <h1>Hola, soy <span>Tu Nombre</span></h1>
-            <p>
-                Me apasiona construir soluciones tecnológicas.
-                Aquí documento mis proyectos, aprendizajes
-                y experiencias en tecnología.
+
+            <p class="eyebrow" data-i18n="heroRole">
+                ESTUDIANTE DE INGENIERÍA INFORMÁTICA
             </p>
+
+            <h1 data-i18n="heroTitle">
+                Hola, soy
+                <span>Jeybing Lewis Manzanares</span>
+            </h1>
+
+            <p data-i18n="heroDescription">
+                Estudiante de Ingeniería Informática con
+                experiencia en desarrollo frontend,
+                diseño de aplicaciones y gestión de
+                sistemas de información. Actualmente
+                amplío mis conocimientos en desarrollo
+                de software, infraestructura tecnológica
+                y computación en la nube.
+            </p>
+
             <div class="actions">
-                <a class="btn" href="#proyectos">Explorar proyectos</a>
-                <a class="btn secondary" href="https://github.com/" target="_blank" rel="noopener noreferrer">
-                    Mi GitHub
+
+                <a class="btn" href="#proyectos" data-i18n="heroProjects">
+                    Explorar proyectos
                 </a>
+
+                <a class="btn secondary" href="https://github.com/Jota20-10" target="_blank" rel="noopener noreferrer">
+                    GitHub
+                </a>
+
             </div>
+
         </section>
 
+
+        <!-- HABILIDADES -->
         <section class="section" id="habilidades">
-            <h2>Mis habilidades</h2>
+
+            <h2 data-i18n="skillsTitle">Mis habilidades</h2>
+
             <div class="skills">
                 <span>HTML / CSS</span>
                 <span>JavaScript</span>
-                <span>Python</span>
+                <span>React / Node.js</span>
                 <span>Git / GitHub</span>
-                <span>Redes</span>
-                <span>Linux</span>
+                <span data-i18n="skillsNetworks">Redes</span>
+                <span data-i18n="skillsDatabases">Bases de datos</span>
             </div>
+
         </section>
 
+
+        <!-- PROYECTOS -->
         <section class="section" id="proyectos">
-            <h2>Mis proyectos</h2>
-            <p>Soluciones que he construido y documentado.</p>
+
+            <h2 data-i18n="projectsTitle">
+                Mis proyectos
+            </h2>
+
+            <p data-i18n="projectsDescription">
+                Soluciones tecnológicas que desarrollo
+                y documento durante mi aprendizaje.
+            </p>
 
             <div class="filters" aria-label="Filtrar proyectos">
-                <button class="active" data-filter="todos">Todos</button>
+
+                <button class="active" data-filter="todos" data-i18n="filterAll">
+                    Todos
+                </button>
+
                 <button data-filter="web">Web</button>
                 <button data-filter="it">IT</button>
                 <button data-filter="cloud">Cloud</button>
+
             </div>
 
             <div id="projectGrid" class="projects"></div>
+
         </section>
 
+
+        <!-- CONTACTO -->
         <section class="section contact" id="contacto">
-            <h2>Trabajemos juntos</h2>
-            <p>Puedes explorar mi trabajo y contactarme.</p>
-            <a class="btn" href="mailto:tu-correo@ejemplo.com">
+
+            <h2 data-i18n="contactTitle">
+                Trabajemos juntos
+            </h2>
+
+            <p data-i18n="contactDescription">
+                ¿Te interesa conocer mis proyectos
+                o establecer contacto profesional?
+            </p>
+
+            <a class="btn" href="mailto:jeybinglewismanzanares@gmail.com" data-i18n="contactButton">
                 Enviar correo
             </a>
+
         </section>
+
+
+
+
+
+
+
     </main>
 
+    <!-- PIE DE PÁGINA -->
     <footer>
-        <p>© <span id="year"></span> Mi Portafolio</p>
+        <p>
+            © <span id="year"></span>
+            Jeybing Lewis Manzanares |
+            DevPortfolio
+        </p>
     </footer>
+
 </body>
 
 </html>
