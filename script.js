@@ -22,6 +22,13 @@ const translations = {
         navProjects: "Proyectos",
         navContact: "Contacto",
 
+        navExperience: "Experiencia",
+        experienceTitle: "Experiencia profesional",
+        experienceIntro:
+            "Experiencia práctica en desarrollo de software " +
+            "y soluciones para tecnologías de información.",
+
+
         heroRole: "ESTUDIANTE DE INGENIERÍA INFORMÁTICA",
         heroTitle: "Hola, soy",
         heroDescription:
@@ -57,6 +64,12 @@ const translations = {
         navSkills: "Skills",
         navProjects: "Projects",
         navContact: "Contact",
+        navExperience: "Experience",
+        experienceTitle: "Professional Experience",
+        experienceIntro:
+            "Hands-on experience in software development " +
+            "and information technology solutions.",
+
 
         heroRole: "COMPUTER ENGINEERING STUDENT",
         heroTitle: "Hi, I'm",
@@ -125,6 +138,148 @@ const projects = [
         url: ""
     }
 ];
+
+
+/* =====================================
+   EXPERIENCIA PROFESIONAL
+   ===================================== */
+
+const experiences = [
+    {
+        company: {
+            es: "Práctica profesional - Departamento de TI",
+            en: "IT Department Internship"
+        },
+
+        role: {
+            es: "Practicante de Tecnologías de Información",
+            en: "IT Department Intern"
+        },
+
+        period: {
+            es: "Mayo 2026 - Agosto 2026",
+            en: "May 2026 - August 2026"
+        },
+
+        description: {
+            es: "Desarrollé un sistema de gestión de activos " +
+                "tecnológicos para centralizar información de " +
+                "equipos y empleados. Diseñé su base de datos, " +
+                "implementé el seguimiento de asignaciones y " +
+                "generé reportes de inventario automatizados.",
+
+            en: "Developed an IT asset management system " +
+                "to centralize equipment and employee records. " +
+                "Designed its database, implemented asset " +
+                "assignment tracking, and generated automated " +
+                "inventory reports."
+        },
+
+        technologies: [
+            "Visual Studio",
+            "Databases",
+            "Crystal Reports"
+        ]
+    },
+
+    {
+        company: {
+            es: "MAPCHINE",
+            en: "MAPCHINE"
+        },
+
+        role: {
+            es: "Desarrollador Frontend Freelance",
+            en: "Freelance Frontend Developer"
+        },
+
+        period: {
+            es: "Enero 2025 - Mayo 2025",
+            en: "January 2025 - May 2025"
+        },
+
+        description: {
+            es: "Participé en la corrección de errores frontend, " +
+                "mejoras de diseño responsivo y optimización " +
+                "de interfaces web. Trabajé con HTML, CSS y " +
+                "JavaScript para mejorar la navegación " +
+                "y experiencia de usuario.",
+
+            en: "Worked on frontend bug fixes, responsive " +
+                "design improvements, and web interface " +
+                "optimization. Used HTML, CSS, and JavaScript " +
+                "to improve navigation and user experience."
+        },
+
+        technologies: [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    }
+];
+
+
+/* =====================================
+   MOSTRAR EXPERIENCIA PROFESIONAL
+   ===================================== */
+
+function renderExperience() {
+
+    const timeline =
+        document.getElementById("experienceTimeline");
+
+    if (!timeline) return;
+
+    timeline.replaceChildren();
+
+    experiences.forEach(experience => {
+
+        const item = document.createElement("article");
+        item.className = "timeline-item";
+
+        const period = document.createElement("p");
+        period.className = "timeline-period";
+        period.textContent =
+            experience.period[currentLanguage];
+
+        const role = document.createElement("h3");
+        role.textContent =
+            experience.role[currentLanguage];
+
+        const company = document.createElement("h4");
+        company.textContent =
+            experience.company[currentLanguage];
+
+        const description = document.createElement("p");
+        description.className = "timeline-description";
+        description.textContent =
+            experience.description[currentLanguage];
+
+        const technologies = document.createElement("div");
+        technologies.className = "timeline-technologies";
+
+        experience.technologies.forEach(technology => {
+
+            const tag = document.createElement("span");
+            tag.textContent = technology;
+
+            technologies.appendChild(tag);
+        });
+
+        item.append(
+            period,
+            role,
+            company,
+            description,
+            technologies
+        );
+
+        timeline.appendChild(item);
+    });
+}
+
+
 
 /* =====================================
    RENDERIZAR PROYECTOS
@@ -245,6 +400,8 @@ function changeLanguage(lang) {
 
     // Actualizar proyectos en el nuevo idioma
     renderProjects();
+    renderExperience();
+
 }
 
 /* =====================================
