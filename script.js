@@ -39,9 +39,18 @@ const translations = {
             "infraestructura tecnológica y computación en la nube.",
         heroProjects: "Explorar proyectos",
 
-        skillsTitle: "Mis habilidades",
-        skillsNetworks: "Redes",
-        skillsDatabases: "Bases de datos",
+
+        skillsTitle: "Habilidades técnicas",
+        skillsIntro:
+            "Tecnologías y herramientas aplicadas en " +
+            "proyectos académicos y experiencias prácticas.",
+        learningTitle: "Tecnologías que estoy reforzando",
+        learningDescription:
+            "Herramientas que he utilizado anteriormente " +
+            "y que estoy retomando mediante proyectos.",
+
+
+
 
         projectsTitle: "Mis proyectos",
         projectsDescription:
@@ -81,9 +90,16 @@ const translations = {
             "and cloud computing.",
         heroProjects: "Explore projects",
 
-        skillsTitle: "My Skills",
-        skillsNetworks: "Networking",
-        skillsDatabases: "Databases",
+
+        skillsTitle: "Technical Skills",
+        skillsIntro:
+            "Technologies and tools applied in academic " +
+            "projects and hands-on experience.",
+        learningTitle: "Technologies I'm Revisiting",
+        learningDescription:
+            "Tools I have previously used and am currently " +
+            "refreshing through practical projects.",
+
 
         projectsTitle: "My Projects",
         projectsDescription:
@@ -101,6 +117,82 @@ const translations = {
         comingSoon: "Demo coming soon"
     }
 };
+
+
+/* =====================================
+   HABILIDADES TÉCNICAS
+   ===================================== */
+
+const skillCategories = [
+    {
+        title: {
+            es: "Desarrollo frontend",
+            en: "Frontend Development"
+        },
+        icon: "💻",
+        skills: [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
+        title: {
+            es: "Software y datos",
+            en: "Software & Data"
+        },
+        icon: "🗄️",
+        skills: [
+            {
+                es: "Diseño de bases de datos",
+                en: "Database Design"
+            },
+            {
+                es: "Aplicaciones de gestión",
+                en: "Management Applications"
+            }
+        ]
+    },
+    {
+        title: {
+            es: "Tecnologías de información",
+            en: "Information Technology"
+        },
+        icon: "🌐",
+        skills: [
+            {
+                es: "Gestión de activos TI",
+                en: "IT Asset Management"
+            },
+            {
+                es: "Fundamentos de redes",
+                en: "Networking Fundamentals"
+            }
+        ]
+    },
+    {
+        title: {
+            es: "Herramientas",
+            en: "Tools"
+        },
+        icon: "🛠️",
+        skills: [
+            "Git",
+            "GitHub",
+            "Visual Studio",
+            "Crystal Reports"
+        ]
+    }
+];
+
+const learningTechnologies = [
+    "React",
+    "Node.js",
+    "Python",
+    "Linux",
+    "Cloud Computing"
+];
+
 
 /* =====================================
    PROYECTOS
@@ -219,6 +311,67 @@ const experiences = [
     }
 ];
 
+
+/* =====================================
+   MOSTRAR HABILIDADES TÉCNICAS
+   ===================================== */
+
+function renderSkills() {
+
+    const skillsGrid =
+        document.getElementById("skillsGrid");
+
+    const learningGrid =
+        document.getElementById("learningGrid");
+
+    if (!skillsGrid || !learningGrid) return;
+
+    skillsGrid.replaceChildren();
+    learningGrid.replaceChildren();
+
+    // Crear tarjetas por categoría
+    skillCategories.forEach(category => {
+
+        const card = document.createElement("article");
+        card.className = "skill-card";
+
+        const icon = document.createElement("div");
+        icon.className = "skill-icon";
+        icon.textContent = category.icon;
+        icon.setAttribute("aria-hidden", "true");
+
+        const title = document.createElement("h3");
+        title.textContent = category.title[currentLanguage];
+
+        const tags = document.createElement("div");
+        tags.className = "skill-tags";
+
+        category.skills.forEach(skill => {
+
+            const tag = document.createElement("span");
+
+            tag.textContent =
+                typeof skill === "string"
+                    ? skill
+                    : skill[currentLanguage];
+
+            tags.appendChild(tag);
+        });
+
+        card.append(icon, title, tags);
+        skillsGrid.appendChild(card);
+    });
+
+    // Tecnologías en proceso de actualización
+    learningTechnologies.forEach(technology => {
+
+        const tag = document.createElement("span");
+        tag.className = "learning-tag";
+        tag.textContent = technology;
+
+        learningGrid.appendChild(tag);
+    });
+}
 
 /* =====================================
    MOSTRAR EXPERIENCIA PROFESIONAL
@@ -401,6 +554,7 @@ function changeLanguage(lang) {
     // Actualizar proyectos en el nuevo idioma
     renderProjects();
     renderExperience();
+    renderSkills();
 
 }
 
