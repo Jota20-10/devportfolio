@@ -65,7 +65,15 @@ const translations = {
         contactButton: "Enviar correo",
 
         viewProject: "Ver proyecto →",
-        comingSoon: "Demostración próximamente"
+        comingSoon: "Demostración próximamente",
+        viewDemo: "Ver demo",
+        viewCode: "Código fuente",
+        statusDevelopment: "En desarrollo",
+        statusPlanned: "Planificado",
+        statusCompleted: "Completado",
+
+
+
     },
 
     en: {
@@ -113,8 +121,15 @@ const translations = {
             "or getting in touch professionally?",
         contactButton: "Send Email",
 
+
         viewProject: "View Project →",
-        comingSoon: "Demo coming soon"
+        comingSoon: "Demo coming soon",
+        viewDemo: "Live demo",
+        viewCode: "Source code",
+        statusDevelopment: "In development",
+        statusPlanned: "Planned",
+        statusCompleted: "Completed",
+
     }
 };
 
@@ -195,41 +210,144 @@ const learningTechnologies = [
 
 
 /* =====================================
-   PROYECTOS
+   PROYECTOS DEL PORTAFOLIO
    ===================================== */
 
 const projects = [
     {
         title: "DevPortfolio",
         category: "web",
+        icon: "💻",
+        status: "development",
+
         description: {
-            es: "Mi portafolio personal desarrollado con HTML, CSS y JavaScript.",
-            en: "My personal portfolio developed with HTML, CSS and JavaScript."
+            es: "Portafolio profesional bilingüe con " +
+                "secciones dinámicas, filtros interactivos " +
+                "y despliegue automatizado mediante GitHub y Netlify.",
+
+            en: "Bilingual professional portfolio with " +
+                "dynamic sections, interactive filters " +
+                "and automated deployment using GitHub and Netlify."
         },
-        technologies: ["HTML", "CSS", "JavaScript"],
-        url: "https://github.com/Jota20-10/devportfolio"
+
+        technologies: [
+            "HTML5",
+            "CSS3",
+            "JavaScript",
+            "Git",
+            "Netlify"
+        ],
+
+        github: "https://github.com/Jota20-10/devportfolio",
+        demo: "https://portfoliojeybinglm.netlify.app"
     },
+
     {
         title: "Sistema HelpDesk",
         category: "it",
+        icon: "🛠️",
+        status: "planned",
+
         description: {
-            es: "Próximo proyecto: gestión de solicitudes de soporte técnico.",
-            en: "Upcoming project: IT support ticket management system."
+            es: "Sistema de gestión de solicitudes de soporte " +
+                "técnico con registro de incidentes, prioridades, " +
+                "estados y seguimiento de tickets.",
+
+            en: "IT support ticket management system " +
+                "with incident registration, priorities, " +
+                "ticket statuses and issue tracking."
         },
-        technologies: ["JavaScript", "CRUD"],
-        url: ""
+
+        technologies: [
+            "React",
+            "JavaScript",
+            "CRUD"
+        ],
+
+        github: "",
+        demo: ""
     },
+
+    {
+        title: "IT Asset Manager",
+        category: "it",
+        icon: "🗄️",
+        status: "planned",
+
+        description: {
+            es: "Aplicación para administrar equipos tecnológicos, " +
+                "empleados, asignaciones e historial de activos " +
+                "mediante una base de datos.",
+
+            en: "Application for managing IT equipment, " +
+                "employees, asset assignments and equipment " +
+                "history using a database."
+        },
+
+        technologies: [
+            "React",
+            "Node.js",
+            "Database"
+        ],
+
+        github: "",
+        demo: ""
+    },
+
     {
         title: "Cloud Monitoring",
         category: "cloud",
+        icon: "☁️",
+        status: "planned",
+
         description: {
-            es: "Proyecto futuro: monitoreo de servicios e infraestructura.",
-            en: "Future project: service and infrastructure monitoring."
+            es: "Panel de monitoreo de servicios e infraestructura " +
+                "para visualizar disponibilidad, respuestas " +
+                "y estado de sistemas.",
+
+            en: "Service and infrastructure monitoring " +
+                "dashboard for visualizing availability, " +
+                "response times and system status."
         },
-        technologies: ["Python", "Linux", "Cloud"],
-        url: ""
+
+        technologies: [
+            "Python",
+            "APIs",
+            "Linux"
+        ],
+
+        github: "",
+        demo: ""
+    },
+
+    {
+        title: "Cloud Deployment",
+        category: "cloud",
+        icon: "🚀",
+        status: "planned",
+
+        description: {
+            es: "Despliegue de una aplicación en la nube " +
+                "con contenedores, automatización y " +
+                "prácticas de integración continua.",
+
+            en: "Cloud application deployment using " +
+                "containers, automation and continuous " +
+                "integration practices."
+        },
+
+        technologies: [
+            "Docker",
+            "Linux",
+            "CI/CD"
+        ],
+
+        github: "",
+        demo: ""
     }
 ];
+
+
 
 
 /* =====================================
@@ -433,15 +551,21 @@ function renderExperience() {
 }
 
 
-
 /* =====================================
-   RENDERIZAR PROYECTOS
+   CONFIGURACIÓN DE PROYECTOS Y FILTROS
    ===================================== */
 
 const grid = document.getElementById("projectGrid");
+
 const filterButtons = document.querySelectorAll("[data-filter]");
 
 let currentFilter = "todos";
+
+
+
+/* =====================================
+   RENDERIZAR TARJETAS DE PROYECTOS
+   ===================================== */
 
 function renderProjects() {
 
@@ -454,40 +578,112 @@ function renderProjects() {
 
     filtered.forEach(project => {
 
+        // Tarjeta principal
         const card = document.createElement("article");
         card.className = "project-card";
+
+        // Encabezado visual
+        const cover = document.createElement("div");
+        cover.className = "project-cover";
+
+        const icon = document.createElement("span");
+        icon.className = "project-icon";
+        icon.textContent = project.icon;
+        icon.setAttribute("aria-hidden", "true");
+
+        cover.appendChild(icon);
+
+        // Contenido
+        const content = document.createElement("div");
+        content.className = "project-content";
+
+        // Nombre y estado
+        const header = document.createElement("div");
+        header.className = "project-header";
 
         const title = document.createElement("h3");
         title.textContent = project.title;
 
+        const status = document.createElement("span");
+        status.className =
+            `project-status status-${project.status}`;
+
+        const statusKeys = {
+            development: "statusDevelopment",
+            planned: "statusPlanned",
+            completed: "statusCompleted"
+        };
+
+        status.textContent =
+            translations[currentLanguage][
+                statusKeys[project.status]
+            ];
+
+        header.append(title, status);
+
+        // Descripción
         const description = document.createElement("p");
+        description.className = "project-description";
         description.textContent =
             project.description[currentLanguage];
 
-        const technologies = document.createElement("p");
-        technologies.textContent =
-            project.technologies.join(" · ");
+        // Tecnologías
+        const technologies = document.createElement("div");
+        technologies.className = "project-technologies";
 
-        card.append(title, description, technologies);
+        project.technologies.forEach(technology => {
+            const tag = document.createElement("span");
+            tag.textContent = technology;
+            technologies.appendChild(tag);
+        });
 
-        if (project.url) {
-            const link = document.createElement("a");
-            link.href = project.url;
-            link.textContent =
-                translations[currentLanguage].viewProject;
-            link.target = "_blank";
-            link.rel = "noopener noreferrer";
-            card.appendChild(link);
-        } else {
-            const status = document.createElement("small");
-            status.textContent =
-                translations[currentLanguage].comingSoon;
-            card.appendChild(status);
+        // Enlaces
+        const actions = document.createElement("div");
+        actions.className = "project-actions";
+
+        if (project.demo) {
+            const demo = document.createElement("a");
+            demo.href = project.demo;
+            demo.className = "project-link demo-link";
+            demo.target = "_blank";
+            demo.rel = "noopener noreferrer";
+            demo.textContent =
+                translations[currentLanguage].viewDemo;
+
+            actions.appendChild(demo);
         }
 
+        if (project.github) {
+            const github = document.createElement("a");
+            github.href = project.github;
+            github.className = "project-link github-link";
+            github.target = "_blank";
+            github.rel = "noopener noreferrer";
+            github.textContent =
+                translations[currentLanguage].viewCode;
+
+            actions.appendChild(github);
+        }
+
+        // Unir elementos
+        content.append(
+            header,
+            description,
+            technologies,
+            actions
+        );
+
+        card.append(cover, content);
         grid.appendChild(card);
     });
 }
+
+
+
+
+
+
+
 
 /* =====================================
    FILTROS
