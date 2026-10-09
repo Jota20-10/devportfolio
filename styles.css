@@ -201,3 +201,35 @@ footer {
         padding-top: 65px;
     }
 }
+
+
+
+/* Selector de idiomas */
+
+.language-switch {
+    display: flex;
+    gap: 5px;
+    padding: 5px;
+    background: #1e293b;
+    border-radius: 10px;
+}
+
+.lang-btn {
+    border: none;
+    border-radius: 7px;
+    padding: 8px 13px;
+    cursor: pointer;
+    background: transparent;
+    color: #cbd5e1;
+    font-weight: bold;
+    transition: background 0.2s ease;
+}
+
+.lang-btn:hover {
+    background: #334155;
+}
+
+.lang-btn.active {
+    background: #2563eb;
+    color: white;
+}
