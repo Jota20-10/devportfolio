@@ -680,3 +680,19 @@ footer {
     color: #ffffff;
     text-decoration: none;
 }
+
+
+/* Contraste de botones de demostración */
+
+.project-card a.demo-link,
+.project-card a.demo-link:visited {
+    background: #2563eb;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.project-card a.demo-link:hover {
+    background: #1d4ed8;
+    color: #ffffff;
+    text-decoration: none;
+}
