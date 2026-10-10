@@ -556,20 +556,7 @@ let currentFilter = "todos";
 
 function renderProjects() {
 
-
-    if (project.image) {
-        const image = document.createElement("img");
-
-        image.src = project.image;
-        image.alt = `Vista previa de ${project.title}`;
-        image.className = "project-image";
-        image.loading = "lazy";
-
-        cover.appendChild(image);
-    } else {
-        cover.appendChild(icon);
-    }
-
+    grid.replaceChildren();
 
     const filtered = projects.filter(project =>
         currentFilter === "todos" ||
@@ -591,7 +578,26 @@ function renderProjects() {
         icon.textContent = project.icon;
         icon.setAttribute("aria-hidden", "true");
 
-        cover.appendChild(icon);
+
+        if (project.image) {
+            const image = document.createElement("img");
+
+            image.src = project.image;
+            image.alt = `Vista previa de ${project.title}`;
+            image.className = "project-image";
+            image.loading = "lazy";
+
+            // Si la imagen no carga, mostrar el emoji
+            image.onerror = () => {
+                image.remove();
+                cover.appendChild(icon);
+            };
+
+            cover.appendChild(image);
+        } else {
+            cover.appendChild(icon);
+        }
+
 
         // Contenido
         const content = document.createElement("div");
