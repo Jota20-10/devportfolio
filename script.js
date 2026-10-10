@@ -243,10 +243,14 @@ const projects = [
     },
 
     {
+
         title: "Sistema HelpDesk",
         category: "it",
         icon: "🛠️",
+        image: "images/helpdesk-dashboard.png",
         status: "development",
+
+
 
         description: {
             es: "Aplicación web de gestión de tickets de soporte técnico " +
@@ -552,7 +556,20 @@ let currentFilter = "todos";
 
 function renderProjects() {
 
-    grid.replaceChildren();
+
+    if (project.image) {
+        const image = document.createElement("img");
+
+        image.src = project.image;
+        image.alt = `Vista previa de ${project.title}`;
+        image.className = "project-image";
+        image.loading = "lazy";
+
+        cover.appendChild(image);
+    } else {
+        cover.appendChild(icon);
+    }
+
 
     const filtered = projects.filter(project =>
         currentFilter === "todos" ||
