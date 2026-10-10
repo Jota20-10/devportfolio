@@ -246,53 +246,36 @@ const projects = [
         title: "Sistema HelpDesk",
         category: "it",
         icon: "🛠️",
-        status: "planned",
+        status: "development",
 
         description: {
-            es: "Sistema de gestión de solicitudes de soporte " +
-                "técnico con registro de incidentes, prioridades, " +
-                "estados y seguimiento de tickets.",
+            es: "Aplicación web de gestión de tickets de soporte técnico " +
+                "desarrollada con React y Vite. Permite crear, consultar, " +
+                "editar y eliminar tickets, gestionar estados y prioridades, " +
+                "realizar búsquedas y aplicar filtros. Los datos se conservan " +
+                "localmente mediante localStorage.",
 
-            en: "IT support ticket management system " +
-                "with incident registration, priorities, " +
-                "ticket statuses and issue tracking."
+            en: "IT support ticket management application built " +
+                "with React and Vite. Supports creating, viewing, " +
+                "editing, and deleting tickets, managing statuses " +
+                "and priorities, searching, and filtering. " +
+                "Data is stored locally using localStorage."
         },
 
         technologies: [
             "React",
             "JavaScript",
-            "CRUD"
+            "Vite",
+            "CSS3",
+            "localStorage"
         ],
 
-        github: "",
-        demo: ""
+        github: "https://github.com/Jota20-10/helpdesk",
+        demo: "https://helpdesk-jeybing.netlify.app"
     },
 
-    {
-        title: "IT Asset Manager",
-        category: "it",
-        icon: "🗄️",
-        status: "planned",
 
-        description: {
-            es: "Aplicación para administrar equipos tecnológicos, " +
-                "empleados, asignaciones e historial de activos " +
-                "mediante una base de datos.",
 
-            en: "Application for managing IT equipment, " +
-                "employees, asset assignments and equipment " +
-                "history using a database."
-        },
-
-        technologies: [
-            "React",
-            "Node.js",
-            "Database"
-        ],
-
-        github: "",
-        demo: ""
-    },
 
     {
         title: "Cloud Monitoring",
@@ -616,7 +599,7 @@ function renderProjects() {
 
         status.textContent =
             translations[currentLanguage][
-                statusKeys[project.status]
+            statusKeys[project.status]
             ];
 
         header.append(title, status);
