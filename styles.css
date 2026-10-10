@@ -606,16 +606,23 @@ footer {
 /* Capturas reales de proyectos */
 
 .project-cover {
+    min-height: 145px;
+    background: linear-gradient(135deg,
+            #1e3a5f,
+            #0b1120);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
 }
 
 .project-image {
     width: 100%;
-    height: 180px;
-    object-fit: cover;
+    height: 145px;
+    object-fit: contain;
     object-position: center top;
     display: block;
-    transition: transform 0.3s ease;
+    background: #0b1120;
 }
 
 .project-card:hover .project-image {
